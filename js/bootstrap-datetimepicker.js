@@ -669,7 +669,8 @@
 
       if (typeof date === "string") {
         if (new RegExp(this.hour_minute).test(date) || new RegExp(this.hour_minute + ":[0-5][0-9]").test(date)) {
-          date = this.getDate()
+          today = new Date();
+          date = new Date(`${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${date}`);
         }
       }
 
