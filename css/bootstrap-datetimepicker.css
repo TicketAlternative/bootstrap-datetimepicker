@@ -409,6 +409,10 @@
 	background: #eeeeee;
 }
 
+.datetimepicker.datetimepicker-time-only thead {
+	visibility: collapse;
+}
+
 .input-append.date .add-on i,
 .input-prepend.date .add-on i,
 .input-group.date .input-group-addon span {

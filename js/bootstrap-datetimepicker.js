@@ -110,6 +110,7 @@
     this.zIndex = options.zIndex || this.element.data('z-index') || undefined;
     this.title = typeof options.title === 'undefined' ? false : options.title;
     this.timezone = options.timezone || timeZoneAbbreviation();
+    this.timeOnly = options.timeOnly || this.element.data('time-only') || false;
 
     this.icons = {
       leftArrow: this.fontAwesome ? 'fa-arrow-left' : (this.bootcssVer === 3 ? 'glyphicon-arrow-left' : 'icon-arrow-left'),
@@ -146,6 +147,8 @@
       this.maxView = options.maxView;
     } else if ('maxView' in this.element.data()) {
       this.maxView = this.element.data('max-view');
+    } else if (this.timeOnly) {
+      this.maxView = 1;
     }
     this.maxView = DPGlobal.convertViewMode(this.maxView);
 
@@ -176,6 +179,8 @@
       this.startViewMode = options.startView;
     } else if ('startView' in this.element.data()) {
       this.startViewMode = this.element.data('start-view');
+    } else if (this.timeOnly) {
+      this.startViewMode = 1;
     }
     this.startViewMode = DPGlobal.convertViewMode(this.startViewMode);
     this.viewMode = this.startViewMode;
@@ -204,7 +209,9 @@
     while (template.indexOf('{rightArrow}') !== -1) {
       template = template.replace('{rightArrow}', this.icons.rightArrow);
     }
-    this.picker = $(template)
+    this.picker = $(template);
+    if (this.timeOnly) this.picker.addClass('datetimepicker-time-only');
+    this.picker
       .appendTo(this.isInline ? this.element : this.container) // 'body')
       .on({
         click:     $.proxy(this.click, this),
