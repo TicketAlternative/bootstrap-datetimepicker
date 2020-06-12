@@ -670,7 +670,10 @@
       if (typeof date === "string") {
         if (new RegExp(this.hour_minute).test(date) || new RegExp(this.hour_minute + ":[0-5][0-9]").test(date)) {
           today = new Date();
-          date = new Date(`${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear()} ${date}`);
+          date = new Date('01/01/2000 ' + date);
+          date.setFullYear(today.getFullYear());
+          date.setMonth(today.getMonth());
+          date.setDate(today.getDate());
         }
       }
 
