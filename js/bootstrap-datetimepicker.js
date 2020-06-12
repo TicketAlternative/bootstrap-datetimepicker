@@ -91,7 +91,7 @@
     this.isInline = false;
     this.isVisible = false;
     this.isInput = this.element.is('input');
-    this.fontAwesome = options.fontAwesome || this.element.data('font-awesome') || false;
+    this.fontAwesome = !(options.fontAwesome === false) && !(this.element.data('font-awesome') === false);
 
     this.bootcssVer = options.bootcssVer || (this.isInput ? (this.element.is('.form-control') ? 3 : 2) : ( this.bootcssVer = this.element.is('.input-group') ? 3 : 2 ));
 
@@ -1857,7 +1857,7 @@
                 '</tr>' +
       '</thead>',
     contTemplate: '<tbody><tr><td colspan="7"></td></tr></tbody>',
-    footTemplate: '<tfoot>' + 
+    footTemplate: '<tfoot>' +
                     '<tr><th colspan="7" class="today"></th></tr>' +
                     '<tr><th colspan="7" class="clear"></th></tr>' +
                   '</tfoot>'
